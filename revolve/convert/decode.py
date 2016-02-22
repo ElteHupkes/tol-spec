@@ -212,8 +212,8 @@ class NeuralNetworkDecoder(object):
             neuron = neurons[neuron_id]
 
             self.neurons[neuron_id] = {
-                "layer": "hidden",
-                "type": "Simple",
+                "layer": neuron["layer"],
+                "type": neuron["type"],
                 "part_id": neuron["part_id"]
             }
 
