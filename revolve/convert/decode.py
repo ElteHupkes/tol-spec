@@ -210,12 +210,25 @@ class NeuralNetworkDecoder(object):
                 err("Duplicate neuron ID '%s'" % neuron_id)
 
             neuron = neurons[neuron_id]
+            layer = "hidden"
+            type = "Simple"
 
-            self.neurons[neuron_id] = {
-                "layer": neuron["layer"],
-                "type": neuron["type"],
-                "part_id": neuron["part_id"]
-            }
+            if "layer" in neuron:
+                layer = neuron["layer"]
+            if "type" in neuron:
+                type = neuron["type"]
+
+            if "part_id" in neuron:
+                self.neurons[neuron_id] = {
+                    "layer": layer,
+                    "type": type,
+                    "part_id": neuron["part_id"]
+                }
+            else:
+                self.neurons[neuron_id] = {
+                    "layer": layer,
+                    "type": type,
+                }
 
             self._process_neuron_params(neuron_id, neurons[neuron_id])
 
